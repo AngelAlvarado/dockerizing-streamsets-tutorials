@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  elasticsearch:
+    #image: elasticsearch_index using own image
+    build: .
+    ports:
+     - "9300:9300"
+     - "9200:9200"
+    volumes: 
+     - ./build:/build:rw
+    command: sh /build/start.sh
+  datacollector:
+    image: streamsets/datacollector
+    ports:
+     - "18630:18630"
+    depends_on:
+     - elasticsearch
+    volumes:
+     - ./streamsets:/data:rw
+  minecraft-server:
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "SPIGOT"
+      VERSION: "1.10.2"
+    image: itzg/minecraft-server
+    container_name: mc
+    tty: true
+    stdin_open: true
+    restart: always
+    volumes:
+     - ./mcdata:/data
+# assing a nice name to volume
+volumes: 
+    datacollectordata:

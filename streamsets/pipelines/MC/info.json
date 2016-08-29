@@ -1,0 +1,14 @@
+{
+  "name" : "MC",
+  "description" : "MC Streamset",
+  "created" : 1469386753963,
+  "lastModified" : 1472443980016,
+  "creator" : "anonymous",
+  "lastModifier" : "anonymous",
+  "lastRev" : "0",
+  "uuid" : "fbee5816-1745-4bb9-ae32-20f3ad9545fc",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ ]
+  }
+}
