@@ -18,20 +18,28 @@ services:
      - elasticsearch
     volumes:
      - ./streamsets:/data:rw
-  minecraft-server:
+  kibana:
+    image: kibana
     ports:
-      - "25565:25565"
+      - 5601:5601
     environment:
-      EULA: "TRUE"
-      TYPE: "SPIGOT"
-      VERSION: "1.10.2"
-    image: itzg/minecraft-server
-    container_name: mc
-    tty: true
-    stdin_open: true
-    restart: always
-    volumes:
-     - ./mcdata:/data
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+#  minecraft-server:
+#    ports:
+#      - "25565:25565"
+#    environment:
+#      EULA: "TRUE"
+#      TYPE: "SPIGOT"
+#      VERSION: "1.10.2"
+#    image: itzg/minecraft-server
+#    container_name: mc
+#    tty: true
+#    stdin_open: true
+#    restart: always
+#    volumes:
+#     - ./mcdata:/data
 # assing a nice name to volume
 volumes: 
     datacollectordata:
