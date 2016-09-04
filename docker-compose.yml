@@ -11,7 +11,7 @@ services:
      - ./build:/build:rw
     command: sh /build/start.sh
   datacollector:
-    image: streamsets/datacollector
+    image: streamsets/datacollector:1.5.1.2
     ports:
      - "18630:18630"
     depends_on:
@@ -19,7 +19,7 @@ services:
     volumes:
      - ./streamsets:/data:rw
   kibana:
-    image: kibana
+    image: kibana:4.6.0
     ports:
       - 5601:5601
     environment:
