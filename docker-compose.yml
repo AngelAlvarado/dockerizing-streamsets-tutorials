@@ -2,14 +2,14 @@ version: '2'
 
 services:
   elasticsearch:
-    #image: elasticsearch_index using own image
-    build: .
+    image: elasticsearch:2.3.5
+    #build: .
     ports:
      - "9300:9300"
      - "9200:9200"
-    volumes: 
-     - ./build:/build:rw
-    command: sh /build/start.sh
+    #volumes: 
+    # - ./build:/build:rw
+    #command: sh /build/start.sh
   datacollector:
     image: streamsets/datacollector:1.5.1.2
     ports:
@@ -26,6 +26,16 @@ services:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     depends_on:
       - elasticsearch
+  inserting_data:
+    build: .
+    volumes: 
+     - ./build:/build:rw
+    command: sh /build/start.sh
+    depends_on:
+      - elasticsearch
+      - kibana
+    
+ 
 #  minecraft-server:
 #    ports:
 #      - "25565:25565"

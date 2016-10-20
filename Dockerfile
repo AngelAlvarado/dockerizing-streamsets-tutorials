@@ -1,5 +1,5 @@
 #Installing ES
-FROM itzg/elasticsearch
+FROM alpine:3.3
 MAINTAINER Angel Alvarado "angel.angelio@gmail.com"
 ADD ./build /build
 RUN apk update
