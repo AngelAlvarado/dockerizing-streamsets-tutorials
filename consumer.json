@@ -1,0 +1,814 @@
+{
+  "pipelineConfig" : {
+    "schemaVersion" : 2,
+    "version" : 5,
+    "uuid" : "0fa3ebeb-cbf7-498e-bf38-cd49d3e16129",
+    "description" : "",
+    "configuration" : [ {
+      "name" : "executionMode",
+      "value" : "STANDALONE"
+    }, {
+      "name" : "deliveryGuarantee",
+      "value" : "AT_LEAST_ONCE"
+    }, {
+      "name" : "shouldRetry",
+      "value" : true
+    }, {
+      "name" : "retryAttempts",
+      "value" : -1
+    }, {
+      "name" : "memoryLimit",
+      "value" : "${jvm:maxMemoryMB() * 0.65}"
+    }, {
+      "name" : "memoryLimitExceeded",
+      "value" : "STOP_PIPELINE"
+    }, {
+      "name" : "notifyOnStates",
+      "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
+    }, {
+      "name" : "emailIDs",
+      "value" : [ ]
+    }, {
+      "name" : "constants",
+      "value" : [ ]
+    }, {
+      "name" : "badRecordsHandling",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_recordstolocalfilesystem_ToErrorLocalFSDTarget::1"
+    }, {
+      "name" : "clusterSlaveMemory",
+      "value" : 1024
+    }, {
+      "name" : "clusterSlaveJavaOpts",
+      "value" : "-XX:PermSize=128M -XX:MaxPermSize=256M -Dhttps.protocols=TLSv1.2,TLSv1.1 -Dlog4j.debug"
+    }, {
+      "name" : "clusterLauncherEnv",
+      "value" : [ ]
+    }, {
+      "name" : "mesosDispatcherURL",
+      "value" : null
+    }, {
+      "name" : "hdfsS3ConfDir",
+      "value" : null
+    }, {
+      "name" : "rateLimit",
+      "value" : 0
+    }, {
+      "name" : "statsAggregatorStage",
+      "value" : ""
+    } ],
+    "uiInfo" : {
+      "previewConfig" : {
+        "previewSource" : "CONFIGURED_SOURCE",
+        "batchSize" : 10,
+        "timeout" : 10000,
+        "writeToDestinations" : false,
+        "showHeader" : false,
+        "showFieldType" : true,
+        "rememberMe" : false
+      }
+    },
+    "stages" : [ {
+      "instanceName" : "KafkaConsumer_01",
+      "library" : "streamsets-datacollector-apache-kafka_0_9-lib",
+      "stageName" : "com_streamsets_pipeline_stage_origin_kafka_KafkaDSource",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "kafkaConfigBean.dataFormatConfig.filePatternInArchive",
+        "value" : "*"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.removeCtrlChars",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.textMaxLineLen",
+        "value" : 1024
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.useCustomDelimiter",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.customDelimiter",
+        "value" : "\\r\\n"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.includeCustomDelimiterInTheText",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.jsonContent",
+        "value" : "MULTIPLE_OBJECTS"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.jsonMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvRecordType",
+        "value" : "LIST_MAP"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.csvSkipStartLines",
+        "value" : 0
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.parseNull",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.nullConstant",
+        "value" : "\\\\N"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.xmlRecordElement",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.xPathNamespaceContext",
+        "value" : [ ]
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.xmlMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.logMode",
+        "value" : "COMMON_LOG_FORMAT"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.logMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.retainOriginalLine",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.customLogFormat",
+        "value" : "%h %l %u %t \"%r\" %>s %b"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.regex",
+        "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.fieldPathsToGroupName",
+        "value" : [ {
+          "fieldPath" : "/",
+          "group" : 1
+        } ]
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.grokPatternDefinition",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.grokPattern",
+        "value" : "%{COMMONAPACHELOG}"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.onParseError",
+        "value" : "ERROR"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.maxStackTraceLines",
+        "value" : 50
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.enableLog4jCustomLogFormat",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.log4jCustomLogFormat",
+        "value" : "%r [%t] %-5p %c %x - %m%n"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.avroSchemaSource",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.avroSchema",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.isDelimited",
+        "value" : true
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.binaryMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.datagramMode",
+        "value" : "SYSLOG"
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.typesDbPath",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.convertTime",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.excludeInterval",
+        "value" : true
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.authFilePath",
+        "value" : null
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.wholeFileMaxObjectLen",
+        "value" : 8192
+      }, {
+        "name" : "kafkaConfigBean.dataFormatConfig.verifyChecksum",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.dataFormat",
+        "value" : "SDC_JSON"
+      }, {
+        "name" : "kafkaConfigBean.metadataBrokerList",
+        "value" : "kafka:9092"
+      }, {
+        "name" : "kafkaConfigBean.zookeeperConnect",
+        "value" : "zookeeper:2181"
+      }, {
+        "name" : "kafkaConfigBean.consumerGroup",
+        "value" : "streamsetsDataCollector"
+      }, {
+        "name" : "kafkaConfigBean.topic",
+        "value" : "TestRun"
+      }, {
+        "name" : "kafkaConfigBean.produceSingleRecordPerMessage",
+        "value" : false
+      }, {
+        "name" : "kafkaConfigBean.maxBatchSize",
+        "value" : 10
+      }, {
+        "name" : "kafkaConfigBean.maxWaitTime",
+        "value" : 12000
+      }, {
+        "name" : "kafkaConfigBean.keyDeserializer",
+        "value" : "STRING"
+      }, {
+        "name" : "kafkaConfigBean.valueDeserializer",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "kafkaConfigBean.kafkaConsumerConfigs",
+        "value" : [ {
+          "key" : "advertised.host.name",
+          "value" : "kafka"
+        }, {
+          "key" : "zookeeper.connect",
+          "value" : "zookeeper:2181"
+        }, {
+          "key" : "auto.offset.reset",
+          "value" : "earliest"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "yPos" : 50,
+        "stageType" : "SOURCE",
+        "rawSource" : {
+          "configuration" : [ {
+            "name" : "brokerHost",
+            "value" : "localhost"
+          }, {
+            "name" : "brokerPort",
+            "value" : 9092
+          }, {
+            "name" : "topic",
+            "value" : "myTopic"
+          }, {
+            "name" : "partition",
+            "value" : 0
+          }, {
+            "name" : "maxWaitTime",
+            "value" : 1000
+          } ]
+        },
+        "description" : "",
+        "label" : "Kafka Consumer 1",
+        "xPos" : 60
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "KafkaConsumer_01OutputLane14834196636590" ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "FieldTypeConverter_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "convertBy",
+        "value" : "BY_FIELD"
+      }, {
+        "name" : "fieldTypeConverterConfigs",
+        "value" : [ {
+          "fields" : [ "/card_number" ],
+          "targetType" : "STRING",
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "encoding" : "UTF-8"
+        }, {
+          "fields" : [ "/transaction_date" ],
+          "targetType" : "DATE",
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "OTHER",
+          "encoding" : "UTF-8",
+          "otherDateFormat" : "MM/dd/yyyy"
+        }, {
+          "fields" : [ "/card_expiry_date" ],
+          "targetType" : "STRING",
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "wholeTypeConverterConfigs",
+        "value" : [ {
+          "sourceType" : "INTEGER",
+          "targetType" : "INTEGER",
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Type Converter 1",
+        "xPos" : 280,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "KafkaConsumer_01OutputLane14834196636590" ],
+      "outputLanes" : [ "FieldTypeConverter_01OutputLane14834197835170" ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "JythonEvaluator_01",
+      "library" : "streamsets-datacollector-jython_2_7-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_jython_JythonDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "processingMode",
+        "value" : "BATCH"
+      }, {
+        "name" : "script",
+        "value" : "for record in records:\n  try:\n    cc = record.value['card_number']\n    if cc == '':\n      err.write(record, \"Credit Card Number was null\")\n      continue\n\n    cc_type = ''\n    if cc.startswith('4'):\n      cc_type = 'Visa'\n    elif cc.startswith(('51','52','53','54','55')):\n      cc_type = 'MasterCard'\n    elif cc.startswith(('34','37')):\n      cc_type = 'AMEX'\n    elif cc.startswith(('300','301','302','303','304','305','36','38')):\n      cc_type = 'Diners Club'\n    elif cc.startswith(('6011','65')):\n      cc_type = 'Discover'\n    elif cc.startswith(('2131','1800','35')):\n      cc_type = 'JCB'\n    else:\n      cc_type = 'Other'\n\n    record.value['credit_card_type'] = cc_type\n    output.write(record)\n\n  except Exception as e:\n    # Send record to error\n    error.write(record, str(e))"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Jython Evaluator 1",
+        "xPos" : 500,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldTypeConverter_01OutputLane14834197835170" ],
+      "outputLanes" : [ "JythonEvaluator_01OutputLane14834199507860" ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "FieldMasker_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldmask_FieldMaskDProcessor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "fieldMaskConfigs",
+        "value" : [ {
+          "fields" : [ "/card_number" ],
+          "maskType" : "CUSTOM",
+          "regex" : "(.*)",
+          "groupsToShow" : "1",
+          "mask" : "************####"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Masker 1",
+        "xPos" : 720,
+        "yPos" : 50,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "JythonEvaluator_01OutputLane14834199507860" ],
+      "outputLanes" : [ "FieldMasker_01OutputLane14834203144030" ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "Elasticsearch_01",
+      "library" : "streamsets-datacollector-elasticsearch_2_4-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_elasticsearch_ElasticSearchDTarget",
+      "stageVersion" : "5",
+      "configuration" : [ {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.shieldUser",
+        "value" : "username:password"
+      }, {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.shieldTransportSsl",
+        "value" : true
+      }, {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.sslKeystorePath",
+        "value" : null
+      }, {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.sslKeystorePassword",
+        "value" : null
+      }, {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.sslTruststorePath",
+        "value" : null
+      }, {
+        "name" : "elasticSearchConfigBean.shieldConfigBean.sslTruststorePassword",
+        "value" : null
+      }, {
+        "name" : "elasticSearchConfigBean.clusterName",
+        "value" : "elasticsearch"
+      }, {
+        "name" : "elasticSearchConfigBean.uris",
+        "value" : [ "elasticsearch:9300" ]
+      }, {
+        "name" : "elasticSearchConfigBean.httpUri",
+        "value" : "elasticsearch:9200"
+      }, {
+        "name" : "elasticSearchConfigBean.useShield",
+        "value" : false
+      }, {
+        "name" : "elasticSearchConfigBean.useElasticCloud",
+        "value" : false
+      }, {
+        "name" : "elasticSearchConfigBean.clientSniff",
+        "value" : false
+      }, {
+        "name" : "elasticSearchConfigBean.configs",
+        "value" : [ ]
+      }, {
+        "name" : "elasticSearchConfigBean.timeDriver",
+        "value" : "${time:now()}"
+      }, {
+        "name" : "elasticSearchConfigBean.timeZoneID",
+        "value" : "UTC"
+      }, {
+        "name" : "elasticSearchConfigBean.indexTemplate",
+        "value" : "cclogs"
+      }, {
+        "name" : "elasticSearchConfigBean.typeTemplate",
+        "value" : "cclogs"
+      }, {
+        "name" : "elasticSearchConfigBean.docIdTemplate",
+        "value" : null
+      }, {
+        "name" : "elasticSearchConfigBean.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "elasticSearchConfigBean.upsert",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Elasticsearch 1",
+        "xPos" : 940,
+        "yPos" : 50,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "FieldMasker_01OutputLane14834203144030" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
+    }, {
+      "instanceName" : "LocalFS_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_localfilesystem_LocalFileSystemDTarget",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "configs.uniquePrefix",
+        "value" : "sdc-${sdc:id()}"
+      }, {
+        "name" : "configs.fileNameSuffix",
+        "value" : null
+      }, {
+        "name" : "configs.dirPathTemplateInHeader",
+        "value" : false
+      }, {
+        "name" : "configs.dirPathTemplate",
+        "value" : "/data/${YYYY()}-${MM()}-${DD()}-${hh()}"
+      }, {
+        "name" : "configs.timeZoneID",
+        "value" : "UTC"
+      }, {
+        "name" : "configs.timeDriver",
+        "value" : "${time:now()}"
+      }, {
+        "name" : "configs.maxRecordsPerFile",
+        "value" : 0
+      }, {
+        "name" : "configs.maxFileSize",
+        "value" : 0
+      }, {
+        "name" : "configs.idleTimeout",
+        "value" : "${1 * HOURS}"
+      }, {
+        "name" : "configs.compression",
+        "value" : "NONE"
+      }, {
+        "name" : "configs.otherCompression",
+        "value" : null
+      }, {
+        "name" : "configs.keyEl",
+        "value" : "${uuid()}"
+      }, {
+        "name" : "configs.lateRecordsLimit",
+        "value" : "${1 * HOURS}"
+      }, {
+        "name" : "configs.rollIfHeader",
+        "value" : false
+      }, {
+        "name" : "configs.rollHeaderName",
+        "value" : "roll"
+      }, {
+        "name" : "configs.lateRecordsAction",
+        "value" : "SEND_TO_ERROR"
+      }, {
+        "name" : "configs.lateRecordsDirPathTemplate",
+        "value" : "/tmp/late/${YYYY()}-${MM()}-${DD()}"
+      }, {
+        "name" : "configs.dataFormat",
+        "value" : "AVRO"
+      }, {
+        "name" : "configs.hdfsPermissionCheck",
+        "value" : true
+      }, {
+        "name" : "configs.permissionEL",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvReplaceNewLines",
+        "value" : true
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+        "value" : " "
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.jsonMode",
+        "value" : "MULTIPLE_OBJECTS"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.textFieldPath",
+        "value" : "/"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.textRecordSeparator",
+        "value" : "\\n"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.textEmptyLineIfNull",
+        "value" : false
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.avroSchemaSource",
+        "value" : "INLINE"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.avroSchema",
+        "value" : "{\"namespace\" : \"cctest.avro\",\n \"type\": \"record\",\n \"name\": \"CCTest\",\n \"doc\": \"Test Credit Card Transactions\",\n \"fields\": [\n            {\"name\": \"transaction_date\", \"type\": \"long\"},\n            {\"name\": \"card_number\", \"type\": \"string\"},\n            {\"name\": \"card_expiry_date\", \"type\": \"string\"},\n            {\"name\": \"card_security_code\", \"type\": \"string\"},\n            {\"name\": \"purchase_amount\", \"type\": \"string\"},\n            {\"name\": \"description\", \"type\": \"string\"}\n           ]\n}"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.registerSchema",
+        "value" : false
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+        "value" : [ ]
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.subjectToRegister",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.avroCompression",
+        "value" : "BZIP2"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.binaryFieldPath",
+        "value" : "/"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.fileNameEL",
+        "value" : "${record:value('/fileInfo/filename')}"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.wholeFileExistsAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "value" : false
+      }, {
+        "name" : "configs.dataGeneratorFormatConfig.checksumAlgorithm",
+        "value" : "MD5"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Local FS 1",
+        "xPos" : 941,
+        "yPos" : 239.01041412353516,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ "FieldMasker_01OutputLane14834203144030" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
+    } ],
+    "errorStage" : {
+      "instanceName" : "WritetoFile_ErrorStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_recordstolocalfilesystem_ToErrorLocalFSDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "directory",
+        "value" : "/logs"
+      }, {
+        "name" : "uniquePrefix",
+        "value" : "sdc-${sdc:id()}"
+      }, {
+        "name" : "rotationIntervalSecs",
+        "value" : "${1 * HOURS}"
+      }, {
+        "name" : "maxFileSizeMbs",
+        "value" : 512
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Error Records - Write to File",
+        "xPos" : 1161,
+        "yPos" : 50,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
+    },
+    "info" : {
+      "name" : "tuto2consumerRaw",
+      "description" : "",
+      "created" : 1483419566805,
+      "lastModified" : 1483749889676,
+      "creator" : "admin",
+      "lastModifier" : "admin",
+      "lastRev" : "0",
+      "uuid" : "0fa3ebeb-cbf7-498e-bf38-cd49d3e16129",
+      "valid" : true,
+      "metadata" : {
+        "labels" : [ ]
+      }
+    },
+    "metadata" : {
+      "labels" : [ ]
+    },
+    "statsAggregatorStage" : null,
+    "valid" : true,
+    "issues" : {
+      "pipelineIssues" : [ ],
+      "stageIssues" : { },
+      "issueCount" : 0
+    },
+    "previewable" : true
+  },
+  "pipelineRules" : {
+    "metricsRuleDefinitions" : [ {
+      "id" : "badRecordsAlertID",
+      "alertText" : "High incidence of Error Records",
+      "metricId" : "pipeline.batchErrorRecords.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1483419566850,
+      "valid" : true
+    }, {
+      "id" : "stageErrorAlertID",
+      "alertText" : "High incidence of Stage Errors",
+      "metricId" : "pipeline.batchErrorMessages.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1483419566850,
+      "valid" : true
+    }, {
+      "id" : "idleGaugeID",
+      "alertText" : "Pipeline is Idle",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "TIME_OF_LAST_RECEIVED_RECORD",
+      "condition" : "${time:now() - value() > 120000}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1483419566850,
+      "valid" : true
+    }, {
+      "id" : "batchTimeAlertID",
+      "alertText" : "Batch taking more time to process",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "CURRENT_BATCH_AGE",
+      "condition" : "${value() > 200}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1483419566850,
+      "valid" : true
+    }, {
+      "id" : "memoryLimitAlertID",
+      "alertText" : "Memory limit for pipeline exceeded",
+      "metricId" : "pipeline.memoryConsumed.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > (jvm:maxMemoryMB() * 0.65)}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1483419566850,
+      "valid" : true
+    } ],
+    "dataRuleDefinitions" : [ ],
+    "driftRuleDefinitions" : [ ],
+    "emailIds" : [ ],
+    "uuid" : "b4f013d4-8ae1-4796-91ad-cdc6b926bc0b",
+    "ruleIssues" : [ ]
+  },
+  "libraryDefinitions" : null
+}

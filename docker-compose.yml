@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  elasticsearch:
+    image: elasticsearch:2.4.1
+    ports:
+     - "9300:9300"
+     - "9200:9200"
+  molanco-datacollector:
+    build: ./streamsets
+    image: molanco-datacollector:2.2.0.0
+    ports:
+     - "18630:18630"
+    depends_on:
+     - elasticsearch
+    volumes:
+     - ./streamsets/data:/data:rw
+    environment:
+     - ADD_LIBS=streamsets-datacollector-apache-kafka_0_9-lib,streamsets-datacollector-elasticsearch_2_4-lib,streamsets-datacollector-jython_2_7-lib
+  kibana:
+    image: kibana:4.6.3
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+  molanco-inserting_data:
+    build: ./build-es-index
+    command: sh /start.sh
+    depends_on:
+      - elasticsearch
+      - kibana
+      - molanco-datacollector
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka:0.9.0.1
+    ports:
+      - "9092"
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper:zk
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_ADVERTISED_PORT: "9092"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"

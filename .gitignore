@@ -1,0 +1,5 @@
+streamsets/data/pipelines/
+streamsets/data/runInfo/
+streamsets/data/sdc.id
+streamsets/data/tutorial_data/ccsample
+.idea
