@@ -35,7 +35,7 @@ Place it into ./minecraft/data/plugins (once the server is up).
 
 [![minecraft-client](images/minecraft-client.png?raw=true)](images/minecraft-client.png)
 
-Don't forget to Op yourself (add yourself to ops.js)and use creative mode(`/gamemode creative).
+Don't forget to Op yourself (add yourself to ops.js)and use creative mode(`/gamemode creative`).
 
 **- Run the kafka command and you'll see a map rendering in front of you**
 
