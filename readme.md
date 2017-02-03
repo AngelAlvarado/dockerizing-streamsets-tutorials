@@ -12,9 +12,9 @@ This branch takes care of setting up Minecraft Spigot server along with Kafka an
 ##Instructions:
 
 Once this repo has been cloned, open your command line and initialize the docker containers using: `$ docker-compose up`.
-This can take a while, be aware Minecraft Spigot server can take a while to setup.
+This can take a while, be aware Minecraft Spigot server can take a while.
 
-Once the containers are up and running following these steps:
+Once the containers are up and running follow these steps:
 
 **- Import the Kakfa producer [pipeline](minecraft-kafka-producer.json) into SDC by going to http://localhost:18630**
 
@@ -35,7 +35,7 @@ Place it into ./minecraft/data/plugins (once the server is up).
 
 [![minecraft-client](images/minecraft-client.png?raw=true)](images/minecraft-client.png)
 
-Don't forget to Op yourself and use creative mode.
+Don't forget to Op yourself (add yourself to ops.js)and use creative mode(`/gamemode creative).
 
 **- Run the kafka command and you'll see a map rendering in front of you**
 
@@ -49,7 +49,9 @@ To reuse a map already rendered:
 /kafka world log false kafka
 ```
 
-For more information regarding the parameters see the [yml](https://github.com/AngelAlvarado/KafkaPlugin/blob/master/plugin.yml) file.
+[![minecraft-client](images/world.png?raw=true)](images/world.png)
+
+For more information regarding the parameters see the [yml](https://github.com/AngelAlvarado/KafkaPlugin/blob/master/plugin.yml) file or `/kafka help`.
 
 **- Play some data into the Minecraft world**
 
@@ -58,13 +60,12 @@ Once the map has been rendered, the plugin will subscribe a Kafka consumer to th
 Play some data from your command line using the script [readfile.sh](streamsets/data/apache-logs/readfile.sh)
 
 ```
-./readfile.sh apache_to_read.log >> apache_access.log
+$ cd ./streamsets/apache-logs
+$ ./readfile.sh apache_to_read.log >> apache_access.log
 ```
 
 A small Apache file have been included but you can use any.
 
-### Thanks
 
-To [@metadady](https://github.com/metadaddy) for the great plugin
-and
-to [@eosrei](https://github.com/eosrei) for the advice on Docker.
+- **Thanks** to [@metadady](https://github.com/metadaddy) for the great Minecraft plugin
+and to [@eosrei](https://github.com/eosrei) for the advice on Docker.
