@@ -1,3 +1,5 @@
+#This branch has been moved into a new [repo](https://github.com/AngelAlvarado/docker-streamsets-kafka-minecraft)
+
 #Dockerizing KafkaPlugin
 
 The goal is be able to use the [KafkaPlugin](https://github.com/metadaddy/KafkaPlugin) created by [@metadady](https://github.com/metadaddy) to Visualize Apache log data in Minecraft with StreamSets Data Collector using docker.
