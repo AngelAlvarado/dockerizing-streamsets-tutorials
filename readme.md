@@ -1,15 +1,15 @@
-#Dockerizing Streamsets tutorials
+# Dockerizing Streamsets tutorials
 
 While learning streamsets data collector I decided to dockerize the whole process to quickly replicate my pipelines. This repo takes care of setting up the Streamsets datacollector [tutorial 1](https://github.com/streamsets/tutorials/tree/master/tutorial-1) via Docker.
 
-##Requirements:
+## Requirements:
 
 * Docker
 * Docker compose
 * [GeoLite2](http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz) database. Place it into: thisrepo/tutorial_data/
 * Streamsets [sample data](https://github.com/streamsets/tutorials/tree/master/sample_data). Place it into the folder: thisrepo/tutorial_data/sample_data
 
-##Instructions:
+## Instructions:
 
 Once this repo has been cloned and Geolite and Sample Data has been placed, open your command line and initialize the docker containers using: $ docker-compose up. This can take a while.
 
