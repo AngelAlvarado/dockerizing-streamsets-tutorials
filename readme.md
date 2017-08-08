@@ -1,14 +1,14 @@
-#Dockerizing Streamsets tutorials
+# Dockerizing Streamsets tutorials
 
 This branch takes care of setting up the Streamsets datacollector [tutorial 2](https://github.com/streamsets/tutorials/tree/master/tutorial-2) via Docker.
 
-##Requirements:
+## Requirements:
 
 * Docker
 * Docker compose
 * Streamsets [sample data](https://github.com/streamsets/tutorials/blob/master/sample_data/ccsample). Place it into the folder: streamsets/data/tutorial_data
 
-##Instructions:
+## Instructions:
 
 Once this repo has been cloned and sample data has been downloaded, open your command line and initialize the docker containers using: $ docker-compose up. This can take a while.
 
