@@ -13,7 +13,7 @@ services:
     depends_on:
      - elasticsearch
     volumes:
-     - ./streamsets:/data:rw
+     - ./streamsets/data:/data:rw
   kibana:
     image: kibana:4.5.4
     ports:

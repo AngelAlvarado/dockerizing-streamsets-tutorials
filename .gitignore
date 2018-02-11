@@ -1,5 +1,3 @@
-mcdata
-streamsets/pipelines/
-streamsets/runInfo/
-streamsets/sdc.id
-streamsets/tutorial_data
+streamsets/data/pipelines/
+streamsets/data/runInfo/
+streamsets/data/sdc.id
